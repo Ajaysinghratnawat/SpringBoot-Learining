@@ -156,24 +156,6 @@ This repository is created for:
 - Interview Preparation
 - Building Real-World Projects
 
----
-
-## 🤝 Contribution
-
-Contributions, suggestions, and improvements are welcome.
-
----
-
-## 📜 License
-
-This project is for learning and educational purposes.
-
----
-
-## 👨‍💻 Author
-
-Ajay Singh Ratnawat
-
 # NewProject 🚀
 
 Added a new Spring Boot learning project to the repository.
@@ -185,3 +167,8 @@ git add .
 git commit -m "Added NewProject"
 git push origin main
 ```
+
+## 👨‍💻 Author
+
+Ajay Singh Ratnawat
+
