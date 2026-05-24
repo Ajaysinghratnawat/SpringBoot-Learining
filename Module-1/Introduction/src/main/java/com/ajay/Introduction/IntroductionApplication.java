@@ -1,6 +1,7 @@
 package com.ajay.Introduction;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,6 +13,16 @@ public class IntroductionApplication implements CommandLineRunner {
 
 	@Autowired
 	PaymentService p2;
+
+	@Autowired
+	@Qualifier("sms")
+	NotificationService ns;//Dependency injection
+
+	//Constructor dependency injection //Best (Preferred)
+//	public IntroductionApplication(NotificationService ns2){
+//		this.ns=ns2;
+//	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(IntroductionApplication.class, args);
 	}
@@ -21,5 +32,7 @@ public class IntroductionApplication implements CommandLineRunner {
 		System.out.println(p1.hashCode());
 		System.out.println(p2.hashCode());
 		p1.pay();
+
+		ns.send("Hello");
 	}
 }
