@@ -174,6 +174,14 @@ This project is for learning and educational purposes.
 
 Ajay Singh Ratnawat
 
+# NewProject 🚀
+
+Added a new Spring Boot learning project to the repository.
+
+## 📌 Git Commands Used
+
+```bash
 git add .
 git commit -m "Added NewProject"
 git push origin main
+```
