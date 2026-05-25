@@ -16,7 +16,7 @@ public class IntroductionApplication implements CommandLineRunner {
 
 	@Autowired
 	@Qualifier("sms")
-	NotificationService ns;//Dependency injection
+	NotificationService ns;//Dependency Injection
 
 	//Constructor dependency injection //Best (Preferred)
 //	public IntroductionApplication(NotificationService ns2){
