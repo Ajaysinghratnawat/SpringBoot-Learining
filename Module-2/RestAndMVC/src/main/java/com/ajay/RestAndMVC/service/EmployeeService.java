@@ -8,6 +8,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,4 +37,19 @@ public class EmployeeService {
         EmployeeEntity employeeEntity = employeeRepository.save(toSaveEntity);
         return mapper.map(employeeEntity,EmployeeDTO.class);
     }
+
+    public EmployeeDTO updateEmployeeById(Long id,EmployeeDTO employeeDTO){
+        EmployeeEntity employeeEntity = mapper.map(employeeDTO,EmployeeEntity.class);
+        employeeEntity.setId(id);
+        EmployeeEntity saveEmployeeEntity = employeeRepository.save(employeeEntity);
+        return mapper.map(saveEmployeeEntity,EmployeeDTO.class);
+    }
+
+    public void deleteEmployeeById(Long id){
+        employeeRepository.deleteById(id);
+    }
+
+//    public EmployeeDTO updatePartialEmployeeById(Long id, Map<String, Objects> updates){
+//        if()
+//    }
 }

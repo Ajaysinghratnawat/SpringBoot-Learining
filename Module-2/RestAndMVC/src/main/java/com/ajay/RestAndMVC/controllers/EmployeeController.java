@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(path = "/employees")
@@ -34,6 +35,21 @@ public class EmployeeController {
     public EmployeeDTO createNewEmployee(@RequestBody EmployeeDTO employee){
         return employeeService.createNewEmployee(employee);
     }
+
+    @PutMapping(path = "/{employeeId}")
+    public EmployeeDTO updateEmployeeById(@RequestBody EmployeeDTO employeeDTO,@PathVariable Long employeeId){
+        return employeeService.updateEmployeeById(employeeId,employeeDTO);
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public void deleteEmployeeById(@PathVariable Long id){
+        employeeService.deleteEmployeeById(id);
+    }
+
+//    @PatchMapping(path = "/{employeeId}")
+//    public EmployeeDTO updatePartialEmployeeById(@RequestBody Map<String,Object> updates, @PathVariable Long employeeId){
+//        return employeeService.updatePartialEmployeeById(employeeId,updates);
+//    }
 
     //    @GetMapping(path = "/getSecretMessage")
 //    public String getMySuperSecretMessage(){
