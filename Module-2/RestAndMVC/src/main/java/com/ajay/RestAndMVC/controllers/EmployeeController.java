@@ -3,6 +3,7 @@ package com.ajay.RestAndMVC.controllers;
 import com.ajay.RestAndMVC.dto.EmployeeDTO;
 import com.ajay.RestAndMVC.entities.EmployeeEntity;
 import com.ajay.RestAndMVC.repositories.EmployeeRepository;
+import com.ajay.RestAndMVC.service.EmployeeService;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -11,27 +12,27 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/employees")
 public class EmployeeController {
-    private final EmployeeRepository employeeRepository;
+    private final EmployeeService employeeService;
 
-    public EmployeeController(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
     //PathVariable
     @GetMapping(path = "/{employeeID}")
-    public EmployeeEntity getEmployeeById(@PathVariable Long employeeID){
-        return employeeRepository.findById(employeeID).orElse(null);
+    public EmployeeDTO getEmployeeById(@PathVariable Long employeeID){
+        return employeeService.getEmployeeById(employeeID);
     }
 
     //RequestParams
     @GetMapping(path = "")
-    public List<EmployeeEntity> getAllEmployees(@RequestParam(required = false) Integer age){
-        return employeeRepository.findAll();
+    public List<EmployeeDTO> getAllEmployees(@RequestParam(required = false) Integer age){
+        return employeeService.findAll();
     }
 
     @PostMapping("/post")
-    public EmployeeEntity createNewEmployee(@RequestBody EmployeeEntity employee){
-        return employeeRepository.save(employee);
+    public EmployeeDTO createNewEmployee(@RequestBody EmployeeDTO employee){
+        return employeeService.createNewEmployee(employee);
     }
 
     //    @GetMapping(path = "/getSecretMessage")
