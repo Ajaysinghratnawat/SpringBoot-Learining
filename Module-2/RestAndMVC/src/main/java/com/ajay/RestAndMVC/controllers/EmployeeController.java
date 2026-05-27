@@ -2,15 +2,18 @@ package com.ajay.RestAndMVC.controllers;
 
 import com.ajay.RestAndMVC.dto.EmployeeDTO;
 import com.ajay.RestAndMVC.entities.EmployeeEntity;
+import com.ajay.RestAndMVC.exceptions.ResourceNotFoundException;
 import com.ajay.RestAndMVC.repositories.EmployeeRepository;
 import com.ajay.RestAndMVC.service.EmployeeService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @RestController
@@ -24,13 +27,25 @@ public class EmployeeController {
 
     //PathVariable
     //ResponseEntity
+//    @GetMapping(path = "/{employeeID}")
+//    public ResponseEntity<?> getEmployeeById(@PathVariable Long employeeID){
+//        Optional<EmployeeDTO> employeeDTO = employeeService.getEmployeeById(employeeID);
+////        if(employeeDTO==null) return ResponseEntity.notFound().build();
+////        return ResponseEntity.ok(employeeDTO);
+//        return employeeDTO.map(employeeDTO1 -> ResponseEntity.ok(employeeDTO1)).orElse(ResponseEntity.notFound().build());
+//    }
+
+//Exception handling
     @GetMapping(path = "/{employeeID}")
     public ResponseEntity<?> getEmployeeById(@PathVariable Long employeeID){
         Optional<EmployeeDTO> employeeDTO = employeeService.getEmployeeById(employeeID);
-//        if(employeeDTO==null) return ResponseEntity.notFound().build();
-//        return ResponseEntity.ok(employeeDTO);
-        return employeeDTO.map(employeeDTO1 -> ResponseEntity.ok(employeeDTO1)).orElse(ResponseEntity.notFound().build());
+        return employeeDTO.map(employeeDTO1 -> ResponseEntity.ok(employeeDTO1)).orElseThrow(()-> new ResourceNotFoundException("Employee not found"));
     }
+//make this in global exception
+//    @ExceptionHandler(NoSuchElementException.class)
+//    public ResponseEntity<String> handleEmployeeNotFound(NoSuchElementException exception){
+//        return new ResponseEntity<>("Employee was not found", HttpStatus.NOT_FOUND);
+//    }
 
     //RequestParams
     @GetMapping(path = "")
