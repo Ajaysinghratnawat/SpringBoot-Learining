@@ -1,6 +1,7 @@
 package com.ajay.RestAndMVC.entities;
 
 import com.ajay.RestAndMVC.dto.EmployeeDTO;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,5 +18,6 @@ public class EmployeeEntity {
     private String email;
     private Integer age;
     private LocalDate dateOfJoining;
+    @JsonProperty("isActive")
     private boolean isActive;
 }

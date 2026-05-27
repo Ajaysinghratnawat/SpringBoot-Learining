@@ -1,15 +1,16 @@
 package com.ajay.RestAndMVC.service;
 
-import com.ajay.RestAndMVC.configs.MapperConfig;
 import com.ajay.RestAndMVC.dto.EmployeeDTO;
 import com.ajay.RestAndMVC.entities.EmployeeEntity;
 import com.ajay.RestAndMVC.repositories.EmployeeRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.util.ReflectionUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,9 +23,9 @@ public class EmployeeService {
         this.mapper = mapper;
     }
 
-    public EmployeeDTO getEmployeeById(Long id){
-        EmployeeEntity employeeEntity = employeeRepository.findById(id).orElse(null);
-        return mapper.map(employeeEntity,EmployeeDTO.class);
+    public Optional<EmployeeDTO> getEmployeeById(Long id){
+        Optional<EmployeeEntity> employeeEntity = employeeRepository.findById(id);
+        return employeeEntity.map(employeeEntity1 -> mapper.map(employeeEntity1,EmployeeDTO.class));
     }
 
     public List<EmployeeDTO> findAll(){
@@ -46,10 +47,8 @@ public class EmployeeService {
     }
 
     public void deleteEmployeeById(Long id){
-        employeeRepository.deleteById(id);
+        boolean exists = employeeRepository.existsById(id);
+        if (exists) employeeRepository.deleteById(id);
     }
 
-//    public EmployeeDTO updatePartialEmployeeById(Long id, Map<String, Objects> updates){
-//        if()
-//    }
 }

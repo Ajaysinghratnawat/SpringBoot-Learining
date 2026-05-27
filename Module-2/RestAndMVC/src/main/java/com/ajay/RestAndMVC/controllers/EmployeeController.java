@@ -4,11 +4,13 @@ import com.ajay.RestAndMVC.dto.EmployeeDTO;
 import com.ajay.RestAndMVC.entities.EmployeeEntity;
 import com.ajay.RestAndMVC.repositories.EmployeeRepository;
 import com.ajay.RestAndMVC.service.EmployeeService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/employees")
@@ -20,9 +22,13 @@ public class EmployeeController {
     }
 
     //PathVariable
+    //ResponseEntity
     @GetMapping(path = "/{employeeID}")
-    public EmployeeDTO getEmployeeById(@PathVariable Long employeeID){
-        return employeeService.getEmployeeById(employeeID);
+    public ResponseEntity<?> getEmployeeById(@PathVariable Long employeeID){
+        Optional<EmployeeDTO> employeeDTO = employeeService.getEmployeeById(employeeID);
+//        if(employeeDTO==null) return ResponseEntity.notFound().build();
+//        return ResponseEntity.ok(employeeDTO);
+        return employeeDTO.map(employeeDTO1 -> ResponseEntity.ok(employeeDTO1)).orElse(ResponseEntity.notFound().build());
     }
 
     //RequestParams
@@ -46,10 +52,6 @@ public class EmployeeController {
         employeeService.deleteEmployeeById(id);
     }
 
-//    @PatchMapping(path = "/{employeeId}")
-//    public EmployeeDTO updatePartialEmployeeById(@RequestBody Map<String,Object> updates, @PathVariable Long employeeId){
-//        return employeeService.updatePartialEmployeeById(employeeId,updates);
-//    }
 
     //    @GetMapping(path = "/getSecretMessage")
 //    public String getMySuperSecretMessage(){
