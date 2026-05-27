@@ -1,6 +1,7 @@
 package com.ajay.RestAndMVC.dto;
 
 
+import com.ajay.RestAndMVC.annotations.EmployeeRoleValidation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -36,7 +37,8 @@ public class EmployeeDTO {
 
 //    @NotBlank
 //    @Pattern(regexp = "^(ADMIN|USER)",message = "This only ADMIN or USER only")
-//    private String role;
+    @EmployeeRoleValidation
+    private String role;
 
     @Past(message = "Only past date not a present date")
 //    @PastOrPresent(message = "Past date or present date")
