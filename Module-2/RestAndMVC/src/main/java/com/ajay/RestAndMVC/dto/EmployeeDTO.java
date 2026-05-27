@@ -37,15 +37,15 @@ public class EmployeeDTO {
 
 //    @NotBlank
 //    @Pattern(regexp = "^(ADMIN|USER)",message = "This only ADMIN or USER only")
-    @EmployeeRoleValidation
-    private String role;
+//    @EmployeeRoleValidation
+//    private String role;
 
-    @Past(message = "Only past date not a present date")
+//    @Past(message = "Only past date not a present date")
 //    @PastOrPresent(message = "Past date or present date")
 //    @Future(message = "Future date only")
 //    @FutureOrPresent(message = "Future date or present date")
     private LocalDate dateOfJoining;
 
-    @JsonProperty("isActive")
+//    @JsonProperty("isActive")
     private boolean isActive;
 }

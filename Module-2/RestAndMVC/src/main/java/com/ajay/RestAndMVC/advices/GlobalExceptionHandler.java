@@ -10,11 +10,24 @@ import java.util.NoSuchElementException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler(NoSuchElementException.class)
-    public ResponseEntity<ApiError> handleResourceNotFound(ResourceNotFoundException exception){
+//    @ExceptionHandler(NoSuchElementException.class)
+//    public ResponseEntity<ApiError> handleResourceNotFound(ResourceNotFoundException exception){
+//        ApiError apiError = ApiError.builder().status(HttpStatus.NOT_FOUND).message(exception.getMessage()).build();
+//        return new ResponseEntity<>(apiError,HttpStatus.NOT_FOUND);
+////        return new ResponseEntity<>("Resource was not found", HttpStatus.NOT_FOUND);
+//    }
+
+
+    //Transforming Api Response
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ApiResponse<?>> handleResourceNotFound(ResourceNotFoundException exception){
         ApiError apiError = ApiError.builder().status(HttpStatus.NOT_FOUND).message(exception.getMessage()).build();
-        return new ResponseEntity<>(apiError,HttpStatus.NOT_FOUND);
-//        return new ResponseEntity<>("Resource was not found", HttpStatus.NOT_FOUND);
+        return buildErrorResponseEntity(apiError);
+    //        return new ResponseEntity<>("Resource was not found", HttpStatus.NOT_FOUND);
+    }
+
+    private ResponseEntity<ApiResponse<?>> buildErrorResponseEntity(ApiError apiError){
+        return new ResponseEntity<>(new ApiResponse<>(apiError),apiError.getStatus());
     }
 
 }
