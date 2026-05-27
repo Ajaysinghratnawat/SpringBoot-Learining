@@ -4,6 +4,7 @@ import com.ajay.RestAndMVC.dto.EmployeeDTO;
 import com.ajay.RestAndMVC.entities.EmployeeEntity;
 import com.ajay.RestAndMVC.repositories.EmployeeRepository;
 import com.ajay.RestAndMVC.service.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,7 +39,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/post")
-    public EmployeeDTO createNewEmployee(@RequestBody EmployeeDTO employee){
+    public EmployeeDTO createNewEmployee(@RequestBody @Valid EmployeeDTO employee){
         return employeeService.createNewEmployee(employee);
     }
 
