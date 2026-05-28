@@ -23,7 +23,7 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
 
 //    Optional<Product> findByTitleAndPrice(String title, BigDecimal price);
 
-    @Query("select e.title, e.price from ProductEntity e where e.title=:title and e.price=:price")
+    @Query("select e.title, e.price from Product e where e.title=:title and e.price=:price")
     Optional<Product> findByTitleAndPrice(String title, BigDecimal price);
 
 }
