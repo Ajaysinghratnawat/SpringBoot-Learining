@@ -1,6 +1,7 @@
 package com.ajay.JPATuts.repositories;
 
 import com.ajay.JPATuts.entities.Product;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -11,7 +12,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product,Long> {
-    List<Product> findByTitle(String title, Pageable pageable);
+    List<Product> findByOrderByPrice();
+
+    List<Product> findBy(Sort sort);
 
     List<Product> findByCreatedAtAfterOrderByTitle(LocalDateTime after);
 
