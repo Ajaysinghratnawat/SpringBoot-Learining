@@ -29,10 +29,13 @@ It includes:
 - Spring Boot
 - Spring MVC
 - Spring Data JPA
+- Spring Security
 - Hibernate
 - MySQL
+- Postgres
 - Maven
 - Postman
+- Swagger
 - Git & GitHub
 
 ---
@@ -155,18 +158,6 @@ This repository is created for:
 - Backend Development Practice
 - Interview Preparation
 - Building Real-World Projects
-
-# NewProject 🚀
-
-Added a new Spring Boot learning project to the repository.
-
-## 📌 Git Commands Used
-
-```bash
-git add .
-git commit -m "Added NewProject"
-git push origin main
-```
 
 ## 👨‍💻 Author
 
