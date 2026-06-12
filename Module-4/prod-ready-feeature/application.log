@@ -1,0 +1,37 @@
+2026-06-12T11:10:59.254+05:30  INFO 8928 --- [prod-ready-feeature] [main] c.p.p.ProdReadyFeeatureApplicationTests  : Starting ProdReadyFeeatureApplicationTests using Java 21.0.11 with PID 8928 (started by Syn A234 in C:\SpringBoot\SpringBoot-Learining\Module-4\prod-ready-feeature)
+2026-06-12T11:10:59.256+05:30  INFO 8928 --- [prod-ready-feeature] [main] c.p.p.ProdReadyFeeatureApplicationTests  : No active profile set, falling back to 1 default profile: "default"
+2026-06-12T11:11:00.070+05:30  INFO 8928 --- [prod-ready-feeature] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-12T11:11:00.178+05:30  INFO 8928 --- [prod-ready-feeature] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 82 ms. Found 1 JPA repository interface.
+2026-06-12T11:11:00.772+05:30  INFO 8928 --- [prod-ready-feeature] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-06-12T11:11:00.849+05:30  INFO 8928 --- [prod-ready-feeature] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
+2026-06-12T11:11:01.248+05:30  INFO 8928 --- [prod-ready-feeature] [main] o.h.e.boot.internal.EnversServiceImpl    : Envers integration enabled? : true
+2026-06-12T11:11:01.460+05:30  INFO 8928 --- [prod-ready-feeature] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-12T11:11:01.492+05:30  INFO 8928 --- [prod-ready-feeature] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-06-12T11:11:01.671+05:30  INFO 8928 --- [prod-ready-feeature] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@127d2aee
+2026-06-12T11:11:01.672+05:30  INFO 8928 --- [prod-ready-feeature] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-06-12T11:11:01.759+05:30  INFO 8928 --- [prod-ready-feeature] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/prod-feature?useSSL=false]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 9.7
+	Default catalog/schema: prod-feature/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-12T11:11:01.975+05:30  INFO 8928 --- [prod-ready-feeature] [main] o.h.e.c.i.m.AuditMetadataGenerator       : Adding properties for entity: com.prod_ready_feature.prod_ready_feeature.entities.PostEntity
+2026-06-12T11:11:02.640+05:30  INFO 8928 --- [prod-ready-feeature] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-12T11:11:02.792+05:30  INFO 8928 --- [prod-ready-feeature] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-12T11:11:03.074+05:30  INFO 8928 --- [prod-ready-feeature] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-06-12T11:11:03.302+05:30  WARN 8928 --- [prod-ready-feeature] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-12T11:11:03.844+05:30  INFO 8928 --- [prod-ready-feeature] [main] c.p.p.ProdReadyFeeatureApplicationTests  : Started ProdReadyFeeatureApplicationTests in 4.926 seconds (process running for 6.275)
+2026-06-12T11:11:04.273+05:30 ERROR 8928 --- [prod-ready-feeature] [main] c.p.p.client.impl.EmployeeClientImpl     : error log
+2026-06-12T11:11:04.273+05:30  WARN 8928 --- [prod-ready-feeature] [main] c.p.p.client.impl.EmployeeClientImpl     : warn log
+2026-06-12T11:11:04.273+05:30  INFO 8928 --- [prod-ready-feeature] [main] c.p.p.client.impl.EmployeeClientImpl     : info log
+2026-06-12T11:11:04.273+05:30 DEBUG 8928 --- [prod-ready-feeature] [main] c.p.p.client.impl.EmployeeClientImpl     : debug log
+2026-06-12T11:11:04.273+05:30 TRACE 8928 --- [prod-ready-feeature] [main] c.p.p.client.impl.EmployeeClientImpl     : trace log
+2026-06-12T11:11:04.360+05:30  INFO 8928 --- [prod-ready-feeature] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-12T11:11:04.363+05:30  INFO 8928 --- [prod-ready-feeature] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-06-12T11:11:04.370+05:30  INFO 8928 --- [prod-ready-feeature] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
