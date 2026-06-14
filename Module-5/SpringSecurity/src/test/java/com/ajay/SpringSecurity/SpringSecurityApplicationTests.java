@@ -14,7 +14,7 @@ class SpringSecurityApplicationTests {
 
 	@Test
 	void contextLoads() {
-		User user = new User(4L,"ajay@gmail.com","1234");
+		User user = new User(4L,"ajay@gmail.com","1234","Ajay");
 		String token = jwtService.generateToken(user);
 		System.out.println(token);
 		Long id = jwtService.getUserIdFromToken(token);

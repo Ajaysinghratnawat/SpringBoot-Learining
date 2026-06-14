@@ -18,4 +18,9 @@ public class AppConfig {
 //    PasswordEncoder passwordEncoder() {
 //        return new BCryptPasswordEncoder();
 //    }
+
+    @Bean
+    PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 }
