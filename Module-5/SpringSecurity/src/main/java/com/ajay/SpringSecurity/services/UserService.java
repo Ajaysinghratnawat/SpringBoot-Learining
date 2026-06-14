@@ -1,21 +1,46 @@
 package com.ajay.SpringSecurity.services;
 
+import com.ajay.SpringSecurity.dto.LoginDto;
+import com.ajay.SpringSecurity.dto.SignUpDto;
+import com.ajay.SpringSecurity.dto.UserDto;
+import com.ajay.SpringSecurity.entities.User;
 import com.ajay.SpringSecurity.exceptions.ResourceNotFoundException;
 import com.ajay.SpringSecurity.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-//@Service
+import java.util.Optional;
+
+@Service
 @RequiredArgsConstructor
 public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
+    private final ModelMapper modelMapper;
+    private final PasswordEncoder passwordEncoder;
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByEmail(username).orElseThrow(()->new ResourceNotFoundException("User with email "+username+" not found"));
     }
+
+    public UserDto signUp(SignUpDto signUpDto) {
+        Optional<User> user = userRepository.findByEmail(signUpDto.getEmail());
+        if(user.isPresent()){
+            throw new BadCredentialsException("User with email already exists");
+        }
+        User toCreate = modelMapper.map(signUpDto,User.class);
+        toCreate.setPassword(passwordEncoder.encode(toCreate.getPassword()));
+        User savedUser = userRepository.save(toCreate);
+        return modelMapper.map(savedUser,UserDto.class);
+    }
+
+
 }
