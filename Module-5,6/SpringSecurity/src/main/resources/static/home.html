@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Spring Security OAuth2</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 450px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .success {
+            color: green;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .token-box {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 8px;
+            word-wrap: break-word;
+            font-size: 12px;
+            max-height: 120px;
+            overflow-y: auto;
+            text-align: left;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🎉 Welcome!</h1>
+
+    <p>You have successfully logged in using Spring Security OAuth2.</p>
+
+    <div id="status" class="success"></div>
+
+    <h3>Access Token</h3>
+    <div id="token" class="token-box">Loading...</div>
+
+    <button onclick="logout()">Logout</button>
+</div>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get("token");
+
+    if (token) {
+        localStorage.setItem("accessToken", token);
+
+        document.getElementById("status").innerText =
+            "Login Successful ✅";
+
+        document.getElementById("token").innerText = token;
+    } else {
+        document.getElementById("status").innerText =
+            "No access token found ❌";
+
+        document.getElementById("token").innerText =
+            "Token not available.";
+    }
+
+    function logout() {
+        localStorage.removeItem("accessToken");
+        window.location.href = "/";
+    }
+</script>
+
+</body>
+</html>

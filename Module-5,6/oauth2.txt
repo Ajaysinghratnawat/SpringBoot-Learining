@@ -1,0 +1,6 @@
+#Google cloud console gives that ids for oauth2
+#spring.security.oauth2.client.registration.google.client-id=4691-7rvqloeipj2duat9qmlikgbrei.apps.googleusercontent.com
+#spring.security.oauth2.client.registration.google.client-secret=GOCSJaDURdXkAj68xISweL-
+#Same for facebook or github also but you have to create id and secret key
+#spring.security.oauth2.client.registration.google.client-id=46913-7rvqloeipj2mbmkgbrei.apps.googleusercontent.com
+#spring.security.oauth2.client.registration.google.client-secret=GOCSPX-dKJaxISweL-
