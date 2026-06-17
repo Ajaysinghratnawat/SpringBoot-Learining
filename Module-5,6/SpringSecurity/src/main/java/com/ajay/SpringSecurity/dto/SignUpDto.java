@@ -1,5 +1,6 @@
 package com.ajay.SpringSecurity.dto;
 
+import com.ajay.SpringSecurity.entities.enums.Permissions;
 import com.ajay.SpringSecurity.entities.enums.Role;
 import lombok.Data;
 
@@ -11,4 +12,5 @@ public class SignUpDto {
     private String password;
     private String name;
     private Set<Role> roles;
+    private Set<Permissions> permissions;
 }

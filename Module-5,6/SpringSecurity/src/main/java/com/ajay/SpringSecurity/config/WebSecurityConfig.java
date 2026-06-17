@@ -1,5 +1,6 @@
 package com.ajay.SpringSecurity.config;
 
+import com.ajay.SpringSecurity.entities.enums.Permissions;
 import com.ajay.SpringSecurity.filter.JwtAuthFilter;
 import com.ajay.SpringSecurity.handlers.oauth2SuccessHandler;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +37,10 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.GET,"/Posts/**").permitAll()
                         .requestMatchers(HttpMethod.POST,"/posts/**").hasAnyRole(ADMIN.name(), CREATER.name())
 //                .requestMatchers("/posts/**").authenticated()
+                        .requestMatchers(HttpMethod.POST,"/posts/**").hasAnyAuthority(Permissions.POST_CREATE.name())
+                        .requestMatchers(HttpMethod.GET,"/posts/**").hasAuthority(Permissions.POST_VIEW.name())
+                        .requestMatchers(HttpMethod.PUT,"/posts/**").hasAuthority(Permissions.POST_UPDATE.name())
+                        .requestMatchers(HttpMethod.DELETE,"/posts/**").hasAuthority(Permissions.POST_DELETE.name())
                 .anyRequest().authenticated())
                 .csrf(csrfConfig->csrfConfig.disable())
                 .sessionManagement(sessionConfig->sessionConfig
