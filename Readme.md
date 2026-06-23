@@ -36,6 +36,11 @@ It includes:
 - Maven
 - Postman
 - Swagger
+- CI/CD Pipeline
+- Spring AI
+- RAG
+- LLM
+- AOP
 - Git & GitHub
 
 ---
