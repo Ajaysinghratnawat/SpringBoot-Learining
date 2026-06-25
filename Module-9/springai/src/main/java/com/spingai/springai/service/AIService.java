@@ -3,6 +3,7 @@ package com.spingai.springai.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.prompt.PromptTemplate;
+import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -11,6 +12,11 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class AIService {
     private final ChatClient chatClient;
+//    private final EmbeddingModel embeddingModel;
+
+//    public float[] getEmbedding(String text){
+//        return embeddingModel.embed(text);
+//    }
 
     public String get_joke(String topic){
 
