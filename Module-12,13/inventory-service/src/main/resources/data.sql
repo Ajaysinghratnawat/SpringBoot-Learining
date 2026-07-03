@@ -1,0 +1,16 @@
+INSERT INTO product (title, price, stock) VALUES
+('Apple iPhone 15', 79999.00, 25),
+('Samsung Galaxy S24', 74999.00, 30),
+('OnePlus 13', 58999.00, 40),
+('Google Pixel 9', 69999.00, 18),
+('Xiaomi 15 Pro', 52999.00, 35),
+('Realme GT 7', 42999.00, 50),
+('Vivo X200', 49999.00, 28),
+('Oppo Find X8', 64999.00, 20),
+('Sony WH-1000XM5 Headphones', 29999.00, 15),
+('Apple AirPods Pro 2', 24999.00, 45),
+('Dell Inspiron 15', 65999.00, 12),
+('HP Pavilion 14', 61999.00, 16),
+('Lenovo ThinkPad E16', 72999.00, 10),
+('Logitech MX Master 3S Mouse', 8999.00, 60),
+('Mechanical Gaming Keyboard', 4999.00, 75);
