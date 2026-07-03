@@ -1,0 +1,1 @@
+Api to hit for microservice -> http://localhost:8080/api/v1/inventory/products/fetchOrders

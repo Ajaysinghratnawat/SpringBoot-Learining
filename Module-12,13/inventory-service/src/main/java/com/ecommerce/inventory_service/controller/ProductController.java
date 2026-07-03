@@ -1,5 +1,6 @@
 package com.ecommerce.inventory_service.controller;
 
+import com.ecommerce.inventory_service.clients.OrdersFeignClient;
 import com.ecommerce.inventory_service.dto.ProductDto;
 import com.ecommerce.inventory_service.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -24,12 +25,15 @@ public class ProductController {
     private final DiscoveryClient discoveryClient;
     private final RestClient restClient;
 
+    private final OrdersFeignClient ordersFeignClient;
+
     @GetMapping("/fetchOrders")
     public String fetchFromOrderService(){
-        ServiceInstance orderService = discoveryClient.getInstances("order-service").get(0);
-        return restClient.get()
-                .uri(orderService.getUri()+"/orders/core/helloOrders")
-                .retrieve().body(String.class);
+//        ServiceInstance orderService = discoveryClient.getInstances("order-service").get(0);
+//        return restClient.get()
+//                .uri(orderService.getUri()+"/orders/core/helloOrders")
+//                .retrieve().body(String.class);
+        return ordersFeignClient.helloOrders();
     }
 
     @GetMapping
