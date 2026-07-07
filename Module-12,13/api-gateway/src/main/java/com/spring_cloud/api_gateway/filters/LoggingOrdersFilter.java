@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class LoggingOrdersFilter extends AbstractGatewayFilterFactory<LoggingOrdersFilter.Config> {
     public LoggingOrdersFilter() {
-        super();
+        super(Config.class);
     }
 
     @Override

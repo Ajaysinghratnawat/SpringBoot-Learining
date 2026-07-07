@@ -6,10 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,8 +19,8 @@ public class OrdersController {
     private final OrdersService ordersService;
 
     @GetMapping("/helloOrders")
-    public String helloOrders(){
-        return "Hello";
+    public String helloOrders(@RequestHeader("X-User-Id") Long userId){
+        return "Hello from order service, user id is : "+userId;
     }
 
     @GetMapping
