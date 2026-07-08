@@ -19,3 +19,6 @@ then add four dependencies
 			<artifactId>feign-micrometer</artifactId>
 </dependency>
 and add actuator also this all do for all microservice and api gateway also
+
+
+download ElasticSearch,Logstash and kibana
