@@ -1,31 +1,8 @@
+kafka:
+  topic:
+    user-random-topic: user-random-topic
+#    user-created-topic:
+
 spring:
-  application:
-    name: user-service
-
-  datasource:
-    url: jdbc:postgresql://localhost:5432/dev
-    username: postgres
-    password: Ajay@9977
-
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-
   kafka:
-    bootstrap-servers: 127.0.0.1:9092
-#    bootstrap-servers: "[::1]:9092"
-
-  jmx:
-    enabled: true
-
-server:
-  port: 9050
-
-logging:
-  level:
-    root: INFO
-    io.kafbat.ui: DEBUG
+    bootstrap-servers: localhost:9092
