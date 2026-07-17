@@ -11,6 +11,9 @@ echo $KAFKA_CLUSTER_ID -> to check id like(NnN94rI-TZeLdkMOEzlwJw)
 #For cluster id
 bin/kafka-storage.sh format --standalone -t $KAFKA_CLUSTER_ID -c config/server.properties
 
+#Start kafka-ui at port 8080 then run this command in wsl
+java -Dspring.config.additional-location=application-local.yml --add-opens java.rmi/javax.rmi.ssl=ALL-UNNAMED -jar api-v1.5.0.jar
+
 #Start Kafka
 bin/kafka-server-start.sh config/server.properties
 
