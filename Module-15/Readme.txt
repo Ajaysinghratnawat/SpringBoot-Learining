@@ -53,5 +53,15 @@ docker tag docker-service:v0.0.1 ajay5529/docker-service:v0.0.1
 #to push
 docker push ajay5529/docker-service:v0.0.1
 
+#Docker compose
+#Build image
+docker build -t ajay5529/docker-service .
+
+#Run docker compose
+docker compose up
+
+#Stop docker compose
+docker compose down
+
 
 
