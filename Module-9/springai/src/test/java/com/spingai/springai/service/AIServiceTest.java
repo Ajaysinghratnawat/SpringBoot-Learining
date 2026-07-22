@@ -25,4 +25,17 @@ class AIServiceTest {
 //        }
 //    }
 
+    @Test
+    public void testStoreData(){
+        aiService.ingestDataToVectorStore("This is a big text");
+    }
+
+    @Test
+    public void testSimilaritySearch(){
+        var res = aiService.similaritySearch("open");
+        for (var docs:res){
+            System.out.println(res);
+        }
+    }
+
 }
