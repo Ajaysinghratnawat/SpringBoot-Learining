@@ -13,7 +13,8 @@ class AIServiceTest {
 
     @Test
     public void testAskAI(){
-        var res = aiService.askAI("What is apple?");
+        var res = aiService.askAI("What is spring AI?"); //explain bcz present in db
+//        var res = aiService.askAI("What is apple?");  //I dont know bcz no detail in db
         System.out.println(res);
     }
     @Test
@@ -42,6 +43,11 @@ class AIServiceTest {
         for (var docs:res){
             System.out.println(res);
         }
+    }
+
+    @Test
+    public void testIngest(){
+        aiService.ingestpdfToVectoreStore();
     }
 
 }

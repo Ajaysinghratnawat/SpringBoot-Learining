@@ -6,8 +6,12 @@ import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.embedding.EmbeddingModel;
+import org.springframework.ai.reader.pdf.PagePdfDocumentReader;
+import org.springframework.ai.transformer.splitter.TokenTextSplitter;
 import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.VectorStore;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +24,9 @@ public class AIService {
     private final ChatClient chatClient;
     private final EmbeddingModel embeddingModel;
     private final VectorStore vectorStore;
+
+    @Value("classpath:faq.pdf")
+    Resource pdffile;
 
     public float[] getEmbedding(String text){
         return embeddingModel.embed(text);
@@ -42,9 +49,10 @@ public class AIService {
 
         List<Document> documents = vectorStore.similaritySearch(SearchRequest.builder()
                 .query(prompt)
-                .topK(2)
-                .similarityThreshold(0.5) // filter out irrelevant matches
-                .filterExpression("topic =='ai' or topic == 'vectorstore'")
+                .topK(4)
+                .similarityThreshold(0.4) // filter out irrelevant matches
+//                .filterExpression("topic =='ai' or topic == 'vectorstore'")
+                .filterExpression("file_name == 'faq.pdf'")
                 .build());
 
         if (documents.isEmpty()) {
@@ -82,6 +90,18 @@ public class AIService {
                 new Document("PostgreSQL...", Map.of("topic", "ai")),
                 new Document("RAG...", Map.of("topic", "ai"))
         );
+    }
+
+    public void ingestpdfToVectoreStore(){
+        PagePdfDocumentReader reader = new PagePdfDocumentReader(pdffile);
+        List<Document> pages = reader.get();
+        TokenTextSplitter tokenTextSplitter = TokenTextSplitter.builder()
+                .withChunkSize(200)
+                .build();
+
+        List<Document> chunks = tokenTextSplitter.apply(pages);
+        vectorStore.add(chunks);
+
     }
 
     public List<Document> similaritySearch(String text){
