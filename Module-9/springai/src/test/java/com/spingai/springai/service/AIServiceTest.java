@@ -18,6 +18,12 @@ class AIServiceTest {
         System.out.println(res);
     }
     @Test
+    public void testaskAIWithAdvisors(){
+//        String res = aiService.askAIWithAdvisors("can you tell me the capital of india and also my name is ajay","ajay123");
+        String res = aiService.askAIWithAdvisors("What is my name ?","ajay123");
+        System.out.println(res);
+    }
+    @Test
     public void testGetJoke(){
         var joke = aiService.get_joke("cat");
         System.out.println(joke);

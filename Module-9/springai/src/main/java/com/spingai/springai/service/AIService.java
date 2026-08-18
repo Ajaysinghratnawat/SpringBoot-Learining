@@ -2,7 +2,9 @@ package com.spingai.springai.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
+import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
+import org.springframework.ai.chat.client.advisor.vectorstore.VectorStoreChatMemoryAdvisor;
+import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.embedding.EmbeddingModel;
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
+import java.awt.*;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -24,12 +27,33 @@ public class AIService {
     private final ChatClient chatClient;
     private final EmbeddingModel embeddingModel;
     private final VectorStore vectorStore;
+    private final ChatMemory chatMemory;
 
     @Value("classpath:faq.pdf")
     Resource pdffile;
 
     public float[] getEmbedding(String text){
         return embeddingModel.embed(text);
+    }
+
+    public String askAIWithAdvisors(String prompt,String userId){
+
+        return chatClient.prompt()
+                .system("You are AI assistant called cody." +
+                        "Great users with your name (cody) and the user name if you know their name ." +
+                        "Answer in a freindly tone ,conversational tone.")
+                .user(prompt)
+                .advisors(
+                        MessageChatMemoryAdvisor.builder(chatMemory)
+//                                .conversationalId(userId)
+                                        .build(),
+                        VectorStoreChatMemoryAdvisor.builder(vectorStore)
+                                .defaultTopK(4)
+                                .build()
+                )
+                .advisors(a -> a.param(ChatMemory.CONVERSATION_ID, userId))
+                .call()
+                .content();
     }
 
     public String askAI(String prompt){
@@ -69,7 +93,7 @@ public class AIService {
         return chatClient.prompt()
                 .system(systemPrompt)
                 .user(prompt)
-                .advisors(new SimpleLoggerAdvisor())
+                .advisors()
                 .call()
                 .content();
     }
