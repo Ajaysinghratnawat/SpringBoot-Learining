@@ -5,3 +5,6 @@ select model in ollama or run command in cmd "ollama pull qwen3"
 now paid go openAi
 
 for this run docker pgvector first
+
+#Tool calling
+-> @Tool and @ToolParam
